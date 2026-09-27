@@ -1,0 +1,9 @@
+{
+  "schema_version": "RL_LAB_A1_GRIDWORLD_V1",
+  "environment": {"rows": 5, "cols": 5, "deterministic": true},
+  "algorithm": {"gamma": 0.95, "alpha": 0.2, "episodes": 6000, "epsilon": "linear 1.0 -> 0.02"},
+  "planning_reference": {"value_iteration_iterations": 9, "optimal_start_value": 0.9501188828124982},
+  "q_learning_evaluation": {"seeds": 3, "successes": 3, "mean_return": 3.0, "mean_steps": 8.0},
+  "data": {"external_dataset": false, "environment": "repository-authored teaching environment"},
+  "authorization": {"production_action": false, "training_label": false}
+}

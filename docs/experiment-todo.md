@@ -4,9 +4,9 @@
 
 ## A. Foundations
 
-- [ ] A1 GridWorld：实现 policy evaluation、value iteration、Q-learning。
-- [ ] A2 比较 $\gamma$、$\epsilon$、奖励塑形；解释收敛失败。
-- [ ] A3 图解 Bellman backup、探索与 state visitation。
+- [x] A1 GridWorld：实现 policy evaluation、value iteration、Q-learning。
+- [x] A2 比较 $\gamma$、$\epsilon$、奖励塑形；解释收敛失败。
+- [x] A3 图解 Bellman backup、探索与 state visitation。
 
 ## B. Deep RL
 

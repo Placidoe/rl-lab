@@ -54,3 +54,5 @@ Q-learning、DQN 与 PPO 的最小闭环，再在同一任务上测量 sample ef
 论文阅读顺序见 [参考资料](docs/references.md)，外部公开科研数据的准入规则见
 [数据政策](docs/public-research-data-policy.md)。第一轮已完成的
 [A1 GridWorld 报告](reports/a1-gridworld-value-learning.md) 是后续 DQN/PPO 实验的可验算基线。
+第二轮 [A2 受控实验](reports/a2-gridworld-controls.md) 将“没收敛”拆分为探索覆盖不足、折扣目标改变和
+reward shaping 不变性三个可检验命题。

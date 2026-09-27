@@ -1,0 +1,26 @@
+{
+  "schema_version": "RL_LAB_A2_GRIDWORLD_CONTROLS_V1",
+  "environment": {
+    "layout": "deterministic 5x5 GridWorld; goal reward 10; nearby terminal reward 1; nonterminal reward -1",
+    "evaluation": "greedy policy with base rewards and no exploration"
+  },
+  "protocol": {
+    "seeds": [7, 19, 31, 43, 59, 71, 89, 101],
+    "episodes": 1200,
+    "max_steps": 40,
+    "alpha": 0.2
+  },
+  "final_results": [
+    {"condition": "baseline", "gamma": 0.95, "epsilon_decay_episodes": 1000, "potential_shaping": false, "goal_rate": 1.0, "trap_rate": 0.0, "mean_return": 3.0, "mean_steps": 8.0, "first_full_goal_checkpoint": 200},
+    {"condition": "fast_epsilon_decay", "gamma": 0.95, "epsilon_decay_episodes": 25, "potential_shaping": false, "goal_rate": 0.0, "trap_rate": 1.0, "mean_return": -2.0, "mean_steps": 4.0, "first_full_goal_checkpoint": null},
+    {"condition": "low_gamma", "gamma": 0.5, "epsilon_decay_episodes": 1000, "potential_shaping": false, "goal_rate": 0.0, "trap_rate": 1.0, "mean_return": -2.0, "mean_steps": 4.0, "first_full_goal_checkpoint": null},
+    {"condition": "potential_shaping", "gamma": 0.95, "epsilon_decay_episodes": 1000, "potential_shaping": true, "goal_rate": 1.0, "trap_rate": 0.0, "mean_return": 3.0, "mean_steps": 8.0, "first_full_goal_checkpoint": 200}
+  ],
+  "checkpoint_goal_rates": {
+    "baseline": {"25": 0.0, "50": 0.0, "100": 0.375, "200": 1.0, "400": 1.0, "800": 1.0, "1200": 1.0},
+    "fast_epsilon_decay": {"25": 0.0, "50": 0.0, "100": 0.0, "200": 0.0, "400": 0.0, "800": 0.0, "1200": 0.0},
+    "low_gamma": {"25": 0.0, "50": 0.0, "100": 0.0, "200": 0.0, "400": 0.0, "800": 0.0, "1200": 0.0},
+    "potential_shaping": {"25": 0.0, "50": 0.125, "100": 0.0, "200": 1.0, "400": 1.0, "800": 1.0, "1200": 1.0}
+  },
+  "authorization": {"production_action": false, "training_label": false}
+}

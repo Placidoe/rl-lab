@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">A2 GridWorld controlled experiment outcomes</title>
+  <desc id="desc">Four conditions compare baseline Q-learning, rapid exploration decay, a low discount factor, and potential-based reward shaping. Baseline and shaping reach the distant goal in all eight seeds by episode 200; the two other conditions select the near terminal state in all seeds.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081626"/><stop offset="1" stop-color="#18233d"/></linearGradient>
+    <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#9cb2d0"/></marker>
+  </defs>
+  <rect width="1200" height="650" rx="24" fill="url(#bg)"/>
+  <text x="55" y="63" fill="#f3f7ff" font-family="Arial, sans-serif" font-size="30" font-weight="700">A2：同一个 Q-learning，三个变量会产生三种完全不同的解释</text>
+  <text x="55" y="96" fill="#a8bdd9" font-family="Arial, sans-serif" font-size="17">8 个固定 seed · 1,200 episodes · greedy evaluation · 只改变一个因果变量</text>
+  <g font-family="Arial, sans-serif">
+    <rect x="55" y="140" width="255" height="190" rx="18" fill="#1e4b41" stroke="#60bc98" stroke-width="2"/>
+    <text x="80" y="178" fill="#8df0c5" font-size="21" font-weight="700">基线</text>
+    <text x="80" y="207" fill="#d9f9e9" font-size="16">γ = 0.95 · ε 1.0 → .02</text>
+    <text x="80" y="244" fill="#ffffff" font-size="27" font-weight="700">Goal 8 / 8</text>
+    <text x="80" y="277" fill="#bcefd7" font-size="16">第 200 episode 全部达到 goal</text>
+    <text x="80" y="305" fill="#bcefd7" font-size="16">平均环境 return = 3.0</text>
+    <rect x="335" y="140" width="255" height="190" rx="18" fill="#513a24" stroke="#d09a56" stroke-width="2"/>
+    <text x="360" y="178" fill="#ffd18c" font-size="21" font-weight="700">探索过早结束</text>
+    <text x="360" y="207" fill="#fff0d5" font-size="16">γ = 0.95 · ε 在 25 episode 衰减</text>
+    <text x="360" y="244" fill="#ffffff" font-size="27" font-weight="700">Trap 8 / 8</text>
+    <text x="360" y="277" fill="#ffe2b7" font-size="16">从第 50 episode 起一直锁定</text>
+    <text x="360" y="305" fill="#ffe2b7" font-size="16">这是探索覆盖不足</text>
+    <rect x="615" y="140" width="255" height="190" rx="18" fill="#473354" stroke="#b884df" stroke-width="2"/>
+    <text x="640" y="178" fill="#deaaff" font-size="21" font-weight="700">短视目标</text>
+    <text x="640" y="207" fill="#f1dcff" font-size="16">γ = 0.50 · ε 1.0 → .02</text>
+    <text x="640" y="244" fill="#ffffff" font-size="27" font-weight="700">Trap 8 / 8</text>
+    <text x="640" y="277" fill="#e9ccff" font-size="16">折扣后 Trap = -1.625</text>
+    <text x="640" y="305" fill="#e9ccff" font-size="16">折扣后 Goal = -1.906</text>
+    <rect x="895" y="140" width="255" height="190" rx="18" fill="#1e3d5b" stroke="#68afe8" stroke-width="2"/>
+    <text x="920" y="178" fill="#91d1ff" font-size="21" font-weight="700">Potential shaping</text>
+    <text x="920" y="207" fill="#def1ff" font-size="16">γ = 0.95 · 同基线探索</text>
+    <text x="920" y="244" fill="#ffffff" font-size="27" font-weight="700">Goal 8 / 8</text>
+    <text x="920" y="277" fill="#c3e7ff" font-size="16">第 200 episode 全部达到 goal</text>
+    <text x="920" y="305" fill="#c3e7ff" font-size="16">本环境中没有更快收敛证据</text>
+  </g>
+  <line x1="55" y1="378" x2="1148" y2="378" stroke="#506988" stroke-width="2"/>
+  <text x="55" y="422" fill="#f2f7ff" font-family="Arial, sans-serif" font-size="22" font-weight="700">如何读这个结果</text>
+  <g font-family="Arial, sans-serif" font-size="18">
+    <circle cx="77" cy="465" r="11" fill="#d09a56"/><text x="101" y="471" fill="#e3ecfa">快衰减 ε：目标没有变，数据分布变了；agent 不再获得足够的远期 goal 样本。</text>
+    <circle cx="77" cy="512" r="11" fill="#b884df"/><text x="101" y="518" fill="#e3ecfa">低 γ：目标本身变了；近处 terminal 的折扣回报更高，因此不是“失败”。</text>
+    <circle cx="77" cy="559" r="11" fill="#68afe8"/><text x="101" y="565" fill="#e3ecfa">potential shaping：理论上策略不变；实测也保持同一最优终点，但该任务未显示加速。</text>
+  </g>
+  <rect x="55" y="592" width="1093" height="35" rx="10" fill="#152740"/>
+  <text x="602" y="615" text-anchor="middle" fill="#c9dbf2" font-family="Arial, sans-serif" font-size="15">结论：先区分“优化目标变了”与“探索没覆盖到”，再讨论算法是否收敛。</text>
+</svg>

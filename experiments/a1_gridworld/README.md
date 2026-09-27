@@ -9,18 +9,18 @@
 Bellman optimality equation：
 
 $$
-V^*(s)=\max_a\sum_{s'}P(s'|s,a)
-\left[r(s,a,s')+\gamma V^*(s')\right].
+V^{*}(s)=\max_{a}\sum_{s'}P(s'|s,a)
+\left[r(s,a,s')+\gamma V^{*}(s')\right].
 $$
 
 本实验环境是确定性的，故每个 `(s,a)` 只有一个后继。Q-learning 的 sample backup：
 
 $$
 Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha
-\left[r_t+\gamma\max_aQ(s_{t+1},a)-Q(s_t,a_t)\right].
+\left[r_t+\gamma\max_{a}Q(s_{t+1},a)-Q(s_t,a_t)\right].
 $$
 
-`\max_aQ` 使它是 off-policy：行为策略可以是 `\epsilon`-greedy，但学习目标仍是 greedy policy。
+`\max_{a}Q` 使它是 off-policy：行为策略可以是 `\epsilon`-greedy，但学习目标仍是 greedy policy。
 
 ## 运行
 

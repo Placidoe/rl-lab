@@ -12,8 +12,8 @@ environment → rollout → return / advantage → update policy or value → ev
 
 ## 0. 统一语言：MDP 与评估
 
-一个折扣 MDP 为 `(\mathcal M=\langle\mathcal S,\mathcal A,P,r,\gamma\rangle)`。策略
-`\pi_\theta(a\mid s)` 产生轨迹，优化目标是：
+一个折扣 MDP 为 $(\mathcal M=\langle\mathcal S,\mathcal A,P,r,\gamma\rangle)$。策略
+$\pi_\theta(a\mid s)$ 产生轨迹，优化目标是：
 
 $$
 J(\theta)=\mathbb E_{\tau\sim\pi_\theta}\left[\sum_{t=0}^{T-1}\gamma^t r_t\right],
@@ -32,18 +32,18 @@ Bellman optimality backup：
 
 $$
 Q(s_t,a_t)\leftarrow Q(s_t,a_t)+\alpha
-\left[r_t+\gamma\max_a Q(s_{t+1},a)-Q(s_t,a_t)\right].
+\left[r_t+\gamma\max_{a} Q(s_{t+1},a)-Q(s_t,a_t)\right].
 $$
 
-要理解：bootstrapping、off-policy、`\epsilon`-greedy、奖励稀疏和状态访问覆盖。
+要理解：bootstrapping、off-policy、$\epsilon$-greedy、奖励稀疏和状态访问覆盖。
 
 ### DQN 家族
 
-神经网络近似 `Q_\phi`，最小化 temporal-difference loss：
+神经网络近似 $Q_\phi$，最小化 temporal-difference loss：
 
 $$
-\mathcal L(\phi)=\mathbb E_{(s,a,r,s')\sim\mathcal D}
-\left[\left(r+\gamma\max_{a'}Q_{\bar\phi}(s',a')-Q_\phi(s,a)\right)^2\right].
+\mathcal L(\phi)=\mathbb E_{(s,a,r,s^{\prime})\sim\mathcal D}
+\left[\left(r+\gamma\max_{a^{\prime}}Q_{\bar\phi}(s^{\prime},a^{\prime})-Q_\phi(s,a)\right)^2\right].
 $$
 
 关键模块：replay buffer 打破样本相关性；target network 降低 moving-target 不稳定；
@@ -58,7 +58,7 @@ $$
 \mathbb E\left[\sum_t \nabla_\theta\log\pi_\theta(a_t\mid s_t)G_t\right].
 $$
 
-用 baseline `V_\psi(s)` 得到 advantage `A_t=G_t-V_\psi(s_t)`，降低方差而不改变期望梯度。
+用 baseline $V_\psi(s)$ 得到 advantage $A_t=G_t-V_\psi(s_t)$，降低方差而不改变期望梯度。
 GAE 在偏差和方差之间折中：
 
 $$
@@ -70,7 +70,7 @@ $$
 
 ### PPO
 
-令 `r_t(\theta)=\pi_\theta(a_t|s_t)/\pi_{\theta_{old}}(a_t|s_t)`：
+令 $r_t(\theta)=\pi_\theta(a_t\mid s_t)/\pi_{\theta_{old}}(a_t\mid s_t)$：
 
 $$
 L^{CLIP}=\mathbb E_t\left[
@@ -88,18 +88,18 @@ TD3 用双 critic、target-policy smoothing、延迟 actor update 抑制 Q 的�
 回报与熵：
 
 $$
-J(\pi)=\mathbb E\left[\sum_t r_t+\alpha\mathcal H(\pi(\cdot|s_t))\right].
+J(\pi)=\mathbb E\left[\sum_t r_t+\alpha\mathcal H(\pi(\cdot\mid s_t))\right].
 $$
 
-这里要理解 reparameterization、temperature `\alpha`、critic target 和 off-policy data reuse。
+这里要理解 reparameterization、temperature $\alpha$、critic target 和 off-policy data reuse。
 
 ## 4. Offline RL、模仿与偏好
 
-offline RL 只能从固定数据 `\mathcal D` 学习。难点是 policy 会选择数据分布外的动作，
+offline RL 只能从固定数据 $\mathcal D$ 学习。难点是 policy 会选择数据分布外的动作，
 critic 因而错误外推。Behavior Cloning 的目标是：
 
 $$
-\max_\theta\;\mathbb E_{(s,a)\sim\mathcal D}[\log\pi_\theta(a|s)].
+\max_{\theta}\;\mathbb E_{(s,a)\sim\mathcal D}[\log\pi_\theta(a\mid s)].
 $$
 
 CQL 用保守 Q 降低 OOD 动作价值；IQL 用 expectile regression 避免显式最大化 OOD 动作。

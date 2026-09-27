@@ -18,19 +18,19 @@ $$
 | 项目 | 值 |
 | --- | --- |
 | 环境 | 自建 deterministic 5×5 GridWorld |
-| 折扣 | `\gamma=0.95` |
-| 学习率 | `\alpha=0.20` |
-| 探索 | `\epsilon` 线性从 1.0 降至 0.02 |
+| 折扣 | $\gamma=0.95$ |
+| 学习率 | $\alpha=0.20$ |
+| 探索 | $\epsilon$ 线性从 1.0 降至 0.02 |
 | Q-learning | 6,000 episodes，最多 40 step / episode |
 | 评估 | 3 seed，greedy policy，不使用探索噪声 |
 
 ## 原理核验
 
 value iteration 是 model-based planning：显式枚举每个动作的后继状态并重复 Bellman backup。
-Q-learning 是 model-free control：只利用采到的一条转移 `(s,a,r,s')`。二者在该确定性环境的
+Q-learning 是 model-free control：只利用采到的一条转移 $(s,a,r,s^{\prime})$。二者在该确定性环境的
 最优行为应一致，但得到知识的途径完全不同。
 
-实验中最容易犯的错误是把带 `\epsilon` 的训练轨迹当测试指标。训练故意包含随机探索，因此必须
+实验中最容易犯的错误是把带 $\epsilon$ 的训练轨迹当测试指标。训练故意包含随机探索，因此必须
 另用 greedy evaluation 评估当前 policy。
 
 ## 产物边界

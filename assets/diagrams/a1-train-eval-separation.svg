@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Training and evaluation must be separated in Q-learning</title>
+  <desc id="desc">The training loop uses epsilon greedy actions and updates Q values. The evaluation loop freezes Q values and selects greedy actions only. Their return metrics must not be mixed.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0a1727"/><stop offset="1" stop-color="#17233d"/></linearGradient>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#a8bdd9"/></marker>
+  </defs>
+  <rect width="1200" height="500" rx="24" fill="url(#bg)"/>
+  <text x="60" y="65" fill="#f2f7ff" font-family="Arial, sans-serif" font-size="30" font-weight="700">指标隔离：训练回报不等于策略质量</text>
+  <text x="60" y="98" fill="#a8bdd9" font-family="Arial, sans-serif" font-size="17">探索会主动执行次优动作，因此训练轨迹的 return 不能直接代表当前 greedy policy。</text>
+  <g>
+    <rect x="65" y="150" width="485" height="275" rx="20" fill="#1e3655" stroke="#5d94ce" stroke-width="2"/>
+    <text x="100" y="194" fill="#93caff" font-family="Arial, sans-serif" font-size="25" font-weight="700">训练：允许探索并更新</text>
+    <rect x="100" y="225" width="175" height="60" rx="12" fill="#315b86"/><text x="187" y="261" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="17">ε-greedy action</text>
+    <rect x="335" y="225" width="175" height="60" rx="12" fill="#315b86"/><text x="422" y="261" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="17">环境交互</text>
+    <path d="M275 255 H323" fill="none" stroke="#a8bdd9" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="218" y="325" width="175" height="60" rx="12" fill="#235077"/><text x="305" y="361" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="17">Q-value update</text>
+    <path d="M422 285 V314 H393" fill="none" stroke="#a8bdd9" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="100" y="407" fill="#b8d4f2" font-family="Arial, sans-serif" font-size="16">记录：训练 return、采样数、loss / TD error</text>
+  </g>
+  <path d="M550 287 H650" fill="none" stroke="#a8bdd9" stroke-width="4" marker-end="url(#arrow)"/>
+  <text x="600" y="267" text-anchor="middle" fill="#b8c9df" font-family="Arial, sans-serif" font-size="15">定期复制 / 冻结</text>
+  <g>
+    <rect x="650" y="150" width="485" height="275" rx="20" fill="#1a4b40" stroke="#59b793" stroke-width="2"/>
+    <text x="685" y="194" fill="#8cf0c4" font-family="Arial, sans-serif" font-size="25" font-weight="700">评估：不探索、不更新</text>
+    <rect x="685" y="225" width="175" height="60" rx="12" fill="#28705e"/><text x="772" y="261" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="17">greedy action</text>
+    <rect x="920" y="225" width="175" height="60" rx="12" fill="#28705e"/><text x="1007" y="261" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="17">环境交互</text>
+    <path d="M860 255 H908" fill="none" stroke="#b6e6d1" stroke-width="3" marker-end="url(#arrow)"/>
+    <rect x="803" y="325" width="175" height="60" rx="12" fill="#215a4d"/><text x="890" y="361" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="17">只汇总指标</text>
+    <path d="M1007 285 V314 H978" fill="none" stroke="#b6e6d1" stroke-width="3" marker-end="url(#arrow)"/>
+    <text x="685" y="407" fill="#b9f3d8" font-family="Arial, sans-serif" font-size="16">报告：greedy return、success rate、steps、seed 方差</text>
+  </g>
+</svg>

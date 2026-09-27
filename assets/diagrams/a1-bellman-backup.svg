@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="560" viewBox="0 0 1200 560" role="img" aria-labelledby="title desc">
+  <title id="title">Bellman backup: value iteration and Q-learning</title>
+  <desc id="desc">A state action transition produces reward and next state. Value iteration consumes the known model while Q-learning consumes a sampled transition; both form a target and update an estimate.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#081525"/><stop offset="1" stop-color="#111d3a"/></linearGradient>
+    <linearGradient id="model" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#196b9c"/><stop offset="1" stop-color="#254e9a"/></linearGradient>
+    <linearGradient id="sample" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#167868"/><stop offset="1" stop-color="#20794d"/></linearGradient>
+    <filter id="shadow" x="-10%" y="-20%" width="120%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000" flood-opacity=".28"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#8fa8c8"/></marker>
+  </defs>
+  <rect width="1200" height="560" rx="24" fill="url(#bg)"/>
+  <text x="60" y="65" fill="#f1f7ff" font-family="Arial, sans-serif" font-size="30" font-weight="700">Bellman backup：同一个目标，两种获得信息的方式</text>
+  <text x="60" y="100" fill="#a7bad6" font-family="Arial, sans-serif" font-size="17">规划知道转移模型；Q-learning 只从实际交互得到一条样本。</text>
+  <g filter="url(#shadow)">
+    <rect x="60" y="145" width="190" height="105" rx="16" fill="#182b49" stroke="#5a7fae"/>
+    <text x="155" y="187" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">状态 s</text>
+    <text x="155" y="216" text-anchor="middle" fill="#b8cae3" font-family="Arial, sans-serif" font-size="16">当前决策点</text>
+    <rect x="60" y="310" width="190" height="105" rx="16" fill="#182b49" stroke="#5a7fae"/>
+    <text x="155" y="352" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">动作 a</text>
+    <text x="155" y="381" text-anchor="middle" fill="#b8cae3" font-family="Arial, sans-serif" font-size="16">选择或枚举</text>
+  </g>
+  <path d="M250 197 H318 V280 H368" fill="none" stroke="#8fa8c8" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M250 362 H318 V280 H368" fill="none" stroke="#8fa8c8" stroke-width="3" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)">
+    <rect x="378" y="208" width="205" height="145" rx="18" fill="#20385d" stroke="#779ad2"/>
+    <text x="480" y="252" text-anchor="middle" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">环境转移</text>
+    <text x="480" y="286" text-anchor="middle" fill="#c4d7f0" font-family="Arial, sans-serif" font-size="17">奖励 r</text>
+    <text x="480" y="314" text-anchor="middle" fill="#c4d7f0" font-family="Arial, sans-serif" font-size="17">下一状态 s′</text>
+  </g>
+  <path d="M583 280 H640" fill="none" stroke="#8fa8c8" stroke-width="3" marker-end="url(#arrow)"/>
+  <g filter="url(#shadow)">
+    <rect x="650" y="135" width="475" height="135" rx="18" fill="url(#model)"/>
+    <text x="682" y="177" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">Value iteration · model-based</text>
+    <text x="682" y="212" fill="#dcefff" font-family="Arial, sans-serif" font-size="17">已知 P(s′ | s, a)，枚举每个动作和后继</text>
+    <text x="682" y="244" fill="#ffffff" font-family="Georgia, serif" font-size="20">target = r + γ maxₐ V(s′)</text>
+    <rect x="650" y="315" width="475" height="135" rx="18" fill="url(#sample)"/>
+    <text x="682" y="357" fill="#ffffff" font-family="Arial, sans-serif" font-size="24" font-weight="700">Q-learning · model-free</text>
+    <text x="682" y="392" fill="#dcfff3" font-family="Arial, sans-serif" font-size="17">只保留实际采到的一条 (s, a, r, s′)</text>
+    <text x="682" y="424" fill="#ffffff" font-family="Georgia, serif" font-size="20">target = r + γ maxₐ Q(s′, a)</text>
+  </g>
+  <path d="M640 280 V203 H650" fill="none" stroke="#8fa8c8" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M640 280 V383 H650" fill="none" stroke="#8fa8c8" stroke-width="3" marker-end="url(#arrow)"/>
+  <text x="60" y="507" fill="#8fa8c8" font-family="Arial, sans-serif" font-size="16">共同点：用当前估计构造 bootstrap target。差异：模型信息是否可得。</text>
+</svg>

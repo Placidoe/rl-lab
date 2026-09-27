@@ -47,3 +47,6 @@ flowchart LR
 
 从 [学习协议](docs/learning-protocol.md) 开始。第一项实验将实现并对比
 Q-learning、DQN 与 PPO 的最小闭环，再在同一任务上测量 sample efficiency、稳定性与吞吐。
+
+完整的算法原理、数学公式和能力关系见 [RL 学习地图](docs/rl-learning-map.md)；
+逐项可执行门槛见 [实验 Todo](docs/experiment-todo.md)。
